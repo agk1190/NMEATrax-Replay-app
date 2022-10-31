@@ -41,7 +41,7 @@ namespace NMEATrax_Replay_app
             //    outputBox.Text = fs.ToString();
             //    fs.Close();
             //}
-            var json = System.IO.File.ReadAllText(@"A:\data1.json");
+            var json = System.IO.File.ReadAllText(@"..\..\..\..\data1.json");
             var objects = JArray.Parse(json); // parse as array  
             
             foreach (JObject root in objects)
@@ -59,6 +59,11 @@ namespace NMEATrax_Replay_app
                     outputBox.Text += ",";
                     outputBox.Text += value;
                     outputBox.Text += "\n";
+
+                    if (appName == "rpm")
+                    {
+                        rpmBox.Text = value;
+                    }
                 }
             }
         }

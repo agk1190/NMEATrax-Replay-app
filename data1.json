@@ -1,0 +1,34 @@
+[
+	{
+		"rpm": {
+			"value": "662"
+		},
+		"speed": {
+			"value": "4.45"
+		},
+		"depth": {
+			"value": "5.23"
+		},
+		"heading": {
+			"value": "23"
+		},
+		"etemp": {
+			"value": "73"
+		},
+		"otemp": {
+			"value": "41"
+		},
+		"wtemp": {
+			"value": "12.35"
+		},
+		"lat": {
+			"value": "48.67"
+		},
+		"lon": {
+			"value": "-123.40"
+		},
+		"depth": {
+			"value": "43.6"
+		}
+	}
+]
