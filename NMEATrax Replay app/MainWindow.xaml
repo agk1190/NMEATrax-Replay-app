@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button x:Name="openBtn" Content="Open" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Cursor="Hand" Click="Button_Click"/>
-        <TextBox x:Name="outputBox" HorizontalAlignment="Left" Margin="92,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="473" Focusable="False" IsHitTestVisible="False" IsTabStop="False" Height="283"/>
-        <TextBox x:Name="rpmBox" HorizontalAlignment="Left" Margin="589,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" AllowDrop="False" Focusable="False" IsHitTestVisible="False"/>
+        <TextBox x:Name="outputBox" HorizontalAlignment="Left" Margin="92,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="473" Height="283"/>
+        <TextBox x:Name="rpmBox" HorizontalAlignment="Left" Margin="589,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.VisualBasic.FileIO;
+using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -32,37 +33,27 @@ namespace NMEATrax_Replay_app
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = "json files (*.json)|*json";
-
-            //if (openFileDialog.ShowDialog() == true)
-            //{
-            //    FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open);
-            //    outputBox.Text = fs.ToString();
-            //    fs.Close();
-            //}
-            var json = System.IO.File.ReadAllText(@"..\..\..\..\data1.json");
-            var objects = JArray.Parse(json); // parse as array  
-            
-            foreach (JObject root in objects)
+            using (TextFieldParser parser = new TextFieldParser(@"..\..\..\..\data.csv"))
             {
-                foreach (KeyValuePair<String, JToken> app in root)
+                //https://stackoverflow.com/questions/2081418/parsing-csv-files-in-c-with-header
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
                 {
-                    var appName = app.Key;
-                    var value = (String)app.Value["value"];
-
-                    Console.WriteLine(appName);
-                    Console.WriteLine(value);
-                    Console.WriteLine("\n");
-
-                    outputBox.Text += appName;
-                    outputBox.Text += ",";
-                    outputBox.Text += value;
-                    outputBox.Text += "\n";
-
-                    if (appName == "rpm")
+                    //Process row
+                    string[] fields = parser.ReadFields();
+                    foreach (string field in fields)
                     {
-                        rpmBox.Text = value;
+                        switch (field)
+                        {
+                            case "rpm":
+                                rpmBox.Text = field;
+                                break;
+
+                            default:
+                                outputBox.Text += field;
+                                break;
+                        }
                     }
                 }
             }
