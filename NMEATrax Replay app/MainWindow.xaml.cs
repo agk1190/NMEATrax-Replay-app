@@ -31,19 +31,28 @@ namespace NMEATrax_Replay_app
         public MainWindow()
         {
             InitializeComponent();
+            lineScroll.Maximum = File.ReadAllLines(@"../../../../data.csv").Length;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (TextFieldParser parser = new TextFieldParser(@"..\..\..\..\data.csv"))
-            {
-                //https://stackoverflow.com/a/30329207
-                // open the file "data.csv" which is a CSV file with headers
-                var lines = File.ReadLines(@"../../../../data.csv");
-                double.TryParse(lnNum.Text, out double lineNum);
-                string line = lines.ElementAtOrDefault((Index)lineNum); // null if there are less lines
-                outputBox.Text = line;
-            }
+            updateData();
+        }
+
+        private void lineScroll_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            updateData();
+        }
+
+        private void updateData()
+        {
+            //https://stackoverflow.com/a/30329207
+            // open the file "data.csv" which is a CSV file with headers
+            var lines = File.ReadLines(@"../../../../data.csv");
+            string line = lines.ElementAtOrDefault((Index)lineScroll.Value); // null if there are less lines
+            outputBox.Text = line;
+            string valString = lineScroll.Value.ToString();
+            curLnNum.Text = valString;
         }
     }
 }
