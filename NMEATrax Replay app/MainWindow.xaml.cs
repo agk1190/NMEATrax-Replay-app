@@ -3,6 +3,8 @@ using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Formats.Asn1;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,27 +37,12 @@ namespace NMEATrax_Replay_app
         {
             using (TextFieldParser parser = new TextFieldParser(@"..\..\..\..\data.csv"))
             {
-                //https://stackoverflow.com/questions/2081418/parsing-csv-files-in-c-with-header
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(",");
-                while (!parser.EndOfData)
-                {
-                    //Process row
-                    string[] fields = parser.ReadFields();
-                    foreach (string field in fields)
-                    {
-                        switch (field)
-                        {
-                            case "rpm":
-                                rpmBox.Text = field;
-                                break;
-
-                            default:
-                                outputBox.Text += field;
-                                break;
-                        }
-                    }
-                }
+                //https://stackoverflow.com/a/30329207
+                // open the file "data.csv" which is a CSV file with headers
+                var lines = File.ReadLines(@"../../../../data.csv");
+                double.TryParse(lnNum.Text, out double lineNum);
+                string line = lines.ElementAtOrDefault((Index)lineNum); // null if there are less lines
+                outputBox.Text = line;
             }
         }
     }
