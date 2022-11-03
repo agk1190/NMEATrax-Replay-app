@@ -10,11 +10,10 @@
         <Button x:Name="openBtn" Content="Open" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Cursor="Hand" Click="Button_Click"/>
         <TextBox x:Name="outputBox" Margin="86,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" HorizontalAlignment="Left" Width="920"/>
         <Slider x:Name="lineScroll" Margin="272,511,0,0" VerticalAlignment="Top" IsSnapToTickEnabled="True" ValueChanged="lineScroll_ValueChanged" MouseWheel="lineScroll_MouseWheel" HorizontalAlignment="Left" Width="792" MinHeight="3" Height="21"/>
-        <TextBlock x:Name="curLnNum" HorizontalAlignment="Left" Height="21" Margin="242,511,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="19"/>
-        <Button x:Name="incrementBtn" Content="&gt;" HorizontalAlignment="Left" Margin="225,512,0,0" VerticalAlignment="Top" Click="incrementBtn_Click"/>
-        <Button x:Name="decrementBtn" Content="&lt;" HorizontalAlignment="Left" Margin="213,512,0,0" VerticalAlignment="Top" Click="decrementBtn_Click"/>
-        <Button x:Name="playBtn" Content="P" HorizontalAlignment="Left" Height="20" Margin="179,512,0,0" VerticalAlignment="Top" Width="26" Click="playBtn_Click"/>
-        <Button x:Name="stopBtn" Content="S" HorizontalAlignment="Left" Height="20" Margin="149,512,0,0" VerticalAlignment="Top" Width="26" Click="stopBtn_Click"/>
+        <TextBlock x:Name="curLnNum" HorizontalAlignment="Left" Height="21" Margin="237,511,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="25" Text="1"/>
+        <Button x:Name="incrementBtn" Content="&gt;" HorizontalAlignment="Left" Margin="220,510,0,0" VerticalAlignment="Top" Click="incrementBtn_Click"/>
+        <Button x:Name="decrementBtn" Content="&lt;" HorizontalAlignment="Left" Margin="208,510,0,0" VerticalAlignment="Top" Click="decrementBtn_Click"/>
+        <Button x:Name="playStopBtn" Content="Play/Stop" HorizontalAlignment="Left" Height="20" Margin="140,510,0,0" VerticalAlignment="Top" Width="60" Click="playStopBtn_Click" FontStretch="Normal"/>
         <TextBox x:Name="rpmBox" HorizontalAlignment="Left" Height="20" Margin="100,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8" Focusable="True"/>
         <TextBox x:Name="etempBox" HorizontalAlignment="Left" Height="20" Margin="100,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
         <TextBox x:Name="otempBox" HorizontalAlignment="Left" Height="20" Margin="100,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
@@ -41,7 +40,7 @@
         <Label x:Name="gearLabel" Content="Gear" HorizontalAlignment="Left" Margin="250,83,0,0" VerticalAlignment="Top" Height="30" Padding="0,0,0,0"/>
         <Label x:Name="battVLabel" Content="Battery Voltage (V)" HorizontalAlignment="Left" Margin="250,123,0,0" VerticalAlignment="Top" Height="30" Padding="0,0,0,0"/>
         <Label x:Name="timeStampLabel" Content="Time Stamp" HorizontalAlignment="Left" Margin="250,163,0,0" VerticalAlignment="Top" Height="30" Padding="0,0,0,0"/>
-        <Label x:Name="flevelLabel" Content="Fuel Level" HorizontalAlignment="Left" Margin="250,203,0,0" VerticalAlignment="Top" Height="30" Padding="0,0,0,0"/>
+        <Label x:Name="flevelLabel" Content="Fuel Level (%)" HorizontalAlignment="Left" Margin="250,203,0,0" VerticalAlignment="Top" Height="30" Padding="0,0,0,0"/>
 
         <TextBox x:Name="latBox" HorizontalAlignment="Left" Height="20" Margin="400,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8" Focusable="True"/>
         <TextBox x:Name="lonBox" HorizontalAlignment="Left" Height="20" Margin="400,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
@@ -57,10 +56,10 @@
 
         <TextBox x:Name="depthBox" HorizontalAlignment="Left" Height="20" Margin="550,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8" Focusable="True"/>
         <TextBox x:Name="wtempBox" HorizontalAlignment="Left" Height="20" Margin="550,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
-        <Label x:Name="depthLabel" Content="Depth" HorizontalAlignment="Left" Margin="550,3,0,0" VerticalAlignment="Top" Height="30" Padding="0,0,0,0"/>
+        <Label x:Name="depthLabel" Content="Depth (m)" HorizontalAlignment="Left" Margin="550,3,0,0" VerticalAlignment="Top" Height="30" Padding="0,0,0,0"/>
         <Label x:Name="wtempLabel" Content="Water Temp (*C)" HorizontalAlignment="Left" Margin="550,43,0,0" VerticalAlignment="Top" Height="30" Padding="0,0,0,0"/>
-        <TextBlock x:Name="playbackSpeedBox" HorizontalAlignment="Left" Height="20" Margin="100,512,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="25" Text="1"/>
-        <Button x:Name="spdInc" Content="d" HorizontalAlignment="Left" Height="10" Margin="117,514,0,0" VerticalAlignment="Top" Width="20" Click="spdInc_Click"/>
-        <Button x:Name="spdDec" Content="u" HorizontalAlignment="Left" Height="10" Margin="117,524,0,0" VerticalAlignment="Top" Width="20" Click="spdDec_Click"/>
+        <TextBlock x:Name="playbackSpeedBox" HorizontalAlignment="Left" Height="20" Margin="81,512,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="25" Text="1"/>
+        <Button x:Name="spdIncBtn" Content="u" HorizontalAlignment="Left" Height="10" Margin="112,512,0,0" VerticalAlignment="Top" Width="20" Click="spdInc_Click"/>
+        <Button x:Name="spdDecBtn" Content="d" HorizontalAlignment="Left" Height="10" Margin="112,522,0,0" VerticalAlignment="Top" Width="20" Click="spdDec_Click"/>
     </Grid>
 </Window>

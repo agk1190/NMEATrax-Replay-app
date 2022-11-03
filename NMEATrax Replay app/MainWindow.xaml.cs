@@ -7,6 +7,7 @@ using System.Data;
 using System.Formats.Asn1;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,17 +30,22 @@ namespace NMEATrax_Replay_app
     public partial class MainWindow : Window
     {
         private bool playbackEn;
-        private double waitTime = 1.0;
+        private int multiCount = 0;
+        private readonly int []multiplier = { 1, 2, 4, 8, 16, 32, 64 };
+        private string filePath = string.Empty;
 
         public MainWindow()
         {
             InitializeComponent();
-            lineScroll.Maximum = File.ReadAllLines(@"../../../../data.csv").Length - 1;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            updateData();
+            if (getFilePath())
+            {
+                lineScroll.Maximum = File.ReadAllLines(filePath).Length - 1;
+                updateData();
+            }
         }
 
         private void lineScroll_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -49,36 +55,42 @@ namespace NMEATrax_Replay_app
 
         private void updateData()
         {
-            //https://stackoverflow.com/a/30329207
-            // open the file "data.csv" which is a CSV file with headers
-            var lines = File.ReadLines(@"../../../../data.csv");
-            string line = lines.ElementAtOrDefault((Index)lineScroll.Value); // null if there are less lines
-            string[] splitData = line.Split(",");
-            outputBox.Text = line;
-            string valString = lineScroll.Value.ToString();
-            curLnNum.Text = valString;
+            if (filePath == string.Empty)
+            {
+                outputBox.Text = "Please select a file.";
+            } else
+            {
+                //https://stackoverflow.com/a/30329207
+                var lines = File.ReadLines(filePath);
+                string line = lines.ElementAtOrDefault((Index)lineScroll.Value); // null if there are less lines
+                string[] splitData = line.Split(",");
+                outputBox.Text = line;
+                double temp = lineScroll.Value + 1;
+                string valString = temp.ToString();
+                curLnNum.Text = valString;
 
-            rpmBox.Text = splitData[0];
-            etempBox.Text = splitData[1];
-            otempBox.Text = splitData[2];
-            opresBox.Text = splitData[3];
-            exhTempBox.Text = splitData[4];
-            fuelRateBox.Text = splitData[5];
-            fpresBox.Text = splitData[6];
-            flevelBox.Text = splitData[7];
-            legTiltBox.Text = splitData[8];
-            ehoursBox.Text = splitData[9];
-            gearBox.Text = splitData[10];
-            latBox.Text = splitData[11];
-            lonBox.Text = splitData[12];
-            speedBox.Text = splitData[13];
-            headingBox.Text = splitData[14];
-            magVarBox.Text = splitData[15];
-            xteBox.Text = splitData[16];
-            depthBox.Text = splitData[17];
-            wtempBox.Text = splitData[18];
-            battVBox.Text = splitData[19];
-            timeStampBox.Text = splitData[20];
+                rpmBox.Text = splitData[0];
+                etempBox.Text = splitData[1];
+                otempBox.Text = splitData[2];
+                opresBox.Text = splitData[3];
+                exhTempBox.Text = splitData[4];
+                fuelRateBox.Text = splitData[5];
+                fpresBox.Text = splitData[6];
+                flevelBox.Text = splitData[7];
+                legTiltBox.Text = splitData[8];
+                ehoursBox.Text = splitData[9];
+                gearBox.Text = splitData[10];
+                latBox.Text = splitData[11];
+                lonBox.Text = splitData[12];
+                speedBox.Text = splitData[13];
+                headingBox.Text = splitData[14];
+                magVarBox.Text = splitData[15];
+                xteBox.Text = splitData[16];
+                depthBox.Text = splitData[17];
+                wtempBox.Text = splitData[18];
+                battVBox.Text = splitData[19];
+                timeStampBox.Text = splitData[20] + splitData[21];
+            }
         }
 
         private void incrementBtn_Click(object sender, RoutedEventArgs e)
@@ -104,38 +116,61 @@ namespace NMEATrax_Replay_app
             }
         }
 
-        private async void playBtn_Click(object sender, RoutedEventArgs e)
+        private async void playStopBtn_Click(object sender, RoutedEventArgs e)
         {
-            playbackEn = true;
+            playbackEn = !playbackEn;
             while (playbackEn)
             {
                 try
                 {
                     lineScroll.Value++;
-                    await Task.Delay((int)((1.0/waitTime)*1000));
+                    await Task.Delay((int)((1.0 / multiplier[multiCount])*1000));
                 }
                 catch (Exception)
                 {
                     outputBox.Text = e.ToString();
                     throw;
                 }
-                
             }
-        }
-
-        private void stopBtn_Click(object sender, RoutedEventArgs e)
-        {
-            playbackEn = false;
         }
 
         private void spdDec_Click(object sender, RoutedEventArgs e)
         {
-            waitTime--;
+            if (multiCount > 0)
+            {
+                multiCount--;
+                playbackSpeedBox.Text = multiplier[multiCount].ToString();
+            } else{}
         }
 
         private void spdInc_Click(object sender, RoutedEventArgs e)
         {
-            waitTime++;
+            if (multiCount < 6)
+            {
+                multiCount++;
+                playbackSpeedBox.Text = multiplier[multiCount].ToString();
+            }
+        }
+
+        bool getFilePath()
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.InitialDirectory = "c:\\";
+            dlg.Filter = "csv files (*.csv)|*.csv";
+            dlg.FilterIndex = 1;
+            
+            if (dlg.ShowDialog() == true)
+            {
+                filePath = dlg.FileName;
+                if (filePath != string.Empty)
+                {
+                    return (true);
+                } else
+                {
+                    return (false);
+                }
+            }
+            return (false);
         }
     }
 }
