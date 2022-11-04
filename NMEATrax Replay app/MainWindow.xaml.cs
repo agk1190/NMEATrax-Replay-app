@@ -37,6 +37,13 @@ namespace NMEATrax_Replay_app
         public MainWindow()
         {
             InitializeComponent();
+            string[] variables = { "RPM", "Engine Temp", "Oil Temp", "Oil Pressure", "Exhaust Temp", 
+                "Fuel Rate", "Fuel Pressure", "Fuel Level", "Leg Tilt", "Speed", "Heading", "Cross Track Error", 
+                "Depth", "Water Temp", "Battery Voltage" };
+            analyzeOptBox.ItemsSource = variables;
+            analyzeOptBox.SelectedIndex = 0;
+            minBox.Text = "0";
+            maxBox.Text = "100";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -62,7 +69,7 @@ namespace NMEATrax_Replay_app
             {
                 //https://stackoverflow.com/a/30329207
                 var lines = File.ReadLines(filePath);
-                string line = lines.ElementAtOrDefault((Index)lineScroll.Value); // null if there are less lines
+                string line = lines.ElementAtOrDefault((Index)(lineScroll.Value+1)); // null if there are less lines
                 string[] splitData = line.Split(",");
                 outputBox.Text = line;
                 double temp = lineScroll.Value + 1;
@@ -78,17 +85,17 @@ namespace NMEATrax_Replay_app
                 fpresBox.Text = splitData[6];
                 flevelBox.Text = splitData[7];
                 legTiltBox.Text = splitData[8];
-                ehoursBox.Text = splitData[9];
-                gearBox.Text = splitData[10];
-                latBox.Text = splitData[11];
-                lonBox.Text = splitData[12];
-                speedBox.Text = splitData[13];
-                headingBox.Text = splitData[14];
-                magVarBox.Text = splitData[15];
-                xteBox.Text = splitData[16];
-                depthBox.Text = splitData[17];
-                wtempBox.Text = splitData[18];
-                battVBox.Text = splitData[19];
+                speedBox.Text = splitData[9];
+                headingBox.Text = splitData[10];
+                xteBox.Text = splitData[11];
+                depthBox.Text = splitData[12];
+                wtempBox.Text = splitData[13];
+                battVBox.Text = splitData[14];
+                ehoursBox.Text = splitData[15];
+                gearBox.Text = splitData[16];
+                latBox.Text = splitData[17];
+                lonBox.Text = splitData[18];
+                magVarBox.Text = splitData[19];
                 timeStampBox.Text = splitData[20] + splitData[21];
             }
         }
@@ -171,6 +178,64 @@ namespace NMEATrax_Replay_app
                 }
             }
             return (false);
+        }
+
+        void analyzeData(int item, double min, double max)
+        {
+            analyzeBox.Text = string.Empty;
+            if (filePath == string.Empty)
+            {
+                outputBox.Text = "Please select a file.";
+            }
+            else
+            {
+                var lines = File.ReadLines(filePath);
+                double count = 0;
+                foreach (var line in lines)
+                {
+                    count++;
+                    string[] splitData = line.Split(",");
+                    double result = double.Parse(splitData[item]);
+                    if (result > max)
+                    {
+                        analyzeBox.Text += "Upper Limit Exceeded @ line: " + count + "\r\n";
+                    }
+                    if (result < min)
+                    {
+                        analyzeBox.Text += "Lower Limit Exceeded @ line: " + count + "\r\n";
+                    }
+                }
+                if (analyzeBox.Text == string.Empty)
+                {
+                    analyzeBox.Text = "No limits exceeded.";
+                }
+            }
+        }
+
+        private void analyzeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (minBox.Text == string.Empty || maxBox.Text == string.Empty)
+            {
+                analyzeBox.Text = "One or both limits are missing!";
+            } 
+            else
+            {
+                double min = double.Parse(minBox.Text);
+                double max = double.Parse(maxBox.Text);
+                analyzeData(analyzeOptBox.SelectedIndex, min, max);
+            }
+        }
+
+        private void curLnNum_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                if (curLnNum.Text != string.Empty)
+                {
+                    lineScroll.Value = double.Parse(curLnNum.Text) - 1;
+                    updateData();
+                }
+            }
         }
     }
 }
