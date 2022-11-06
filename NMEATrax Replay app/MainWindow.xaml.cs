@@ -52,6 +52,8 @@ namespace NMEATrax_Replay_app
             {
                 lineScroll.Maximum = File.ReadAllLines(filePath).Length - 1;
                 updateData();
+
+                fileNameBox.Text = filePath;
             }
         }
 
@@ -69,34 +71,31 @@ namespace NMEATrax_Replay_app
             {
                 //https://stackoverflow.com/a/30329207
                 var lines = File.ReadLines(filePath);
-                string line = lines.ElementAtOrDefault((Index)(lineScroll.Value+1)); // null if there are less lines
+                string line = lines.ElementAtOrDefault((Index)(lineScroll.Value)); // null if there are less lines
                 string[] splitData = line.Split(",");
                 outputBox.Text = line;
-                double temp = lineScroll.Value + 1;
-                string valString = temp.ToString();
-                curLnNum.Text = valString;
+                curLnNum.Text = (lineScroll.Value + 1).ToString();
 
                 rpmBox.Text = splitData[0];
                 etempBox.Text = splitData[1];
                 otempBox.Text = splitData[2];
                 opresBox.Text = splitData[3];
-                exhTempBox.Text = splitData[4];
-                fuelRateBox.Text = splitData[5];
-                fpresBox.Text = splitData[6];
-                flevelBox.Text = splitData[7];
-                legTiltBox.Text = splitData[8];
-                speedBox.Text = splitData[9];
-                headingBox.Text = splitData[10];
-                xteBox.Text = splitData[11];
-                depthBox.Text = splitData[12];
-                wtempBox.Text = splitData[13];
-                battVBox.Text = splitData[14];
-                ehoursBox.Text = splitData[15];
-                gearBox.Text = splitData[16];
-                latBox.Text = splitData[17];
-                lonBox.Text = splitData[18];
-                magVarBox.Text = splitData[19];
-                timeStampBox.Text = splitData[20] + splitData[21];
+                fuelRateBox.Text = splitData[4];
+                fpresBox.Text = splitData[5];
+                flevelBox.Text = splitData[6];
+                legTiltBox.Text = splitData[7];
+                speedBox.Text = splitData[8];
+                headingBox.Text = splitData[9];
+                xteBox.Text = splitData[10];
+                depthBox.Text = splitData[11];
+                wtempBox.Text = splitData[12];
+                battVBox.Text = splitData[13];
+                ehoursBox.Text = splitData[14];
+                gearBox.Text = splitData[15];
+                latBox.Text = splitData[16];
+                lonBox.Text = splitData[17];
+                magVarBox.Text = splitData[18];
+                timeStampBox.Text = splitData[19];
             }
         }
 
