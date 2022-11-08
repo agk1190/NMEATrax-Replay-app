@@ -32,7 +32,7 @@ namespace NMEATrax_Replay_app
         private bool playbackEn;
         private int multiCount = 0;
         private readonly int []multiplier = { 1, 2, 4, 8, 16, 32, 64 };
-        private string filePath = string.Empty;
+        private string dataFilePath = string.Empty;
 
         public MainWindow()
         {
@@ -44,16 +44,32 @@ namespace NMEATrax_Replay_app
             analyzeOptBox.SelectedIndex = 0;
             minBox.Text = "0";
             maxBox.Text = "100";
+            minRPM.Text= "0";
+            maxRPM.Text= "5000";
+            minOtemp.Text= "0";
+            maxOtemp.Text= "150";
+            minOpres.Text = "300";
+            maxOpres.Text = "700";
+            minEtemp.Text = "0";
+            maxEtemp.Text= "80";
+            minFpres.Text = "600";
+            maxFpres.Text= "700";
+            minBattV.Text = "11";
+            maxBattV.Text= "15";
+            minFlevel.Text = "10";
+            maxFlevel.Text= "100";
+            minDepth.Text = "5";
+            maxDepth.Text= "10000";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (getFilePath())
             {
-                lineScroll.Maximum = File.ReadAllLines(filePath).Length - 1;
+                lineScroll.Maximum = File.ReadAllLines(dataFilePath).Length - 1;
                 updateData();
 
-                fileNameBox.Text = filePath;
+                fileNameBox.Text = dataFilePath;
             }
         }
 
@@ -64,13 +80,14 @@ namespace NMEATrax_Replay_app
 
         private void updateData()
         {
-            if (filePath == string.Empty)
+            if (dataFilePath == string.Empty)
             {
                 outputBox.Text = "Please select a file.";
-            } else
+            } 
+            else
             {
                 //https://stackoverflow.com/a/30329207
-                var lines = File.ReadLines(filePath);
+                var lines = File.ReadLines(dataFilePath);
                 string line = lines.ElementAtOrDefault((Index)(lineScroll.Value)); // null if there are less lines
                 string[] splitData = line.Split(",");
                 outputBox.Text = line;
@@ -96,6 +113,30 @@ namespace NMEATrax_Replay_app
                 lonBox.Text = splitData[17];
                 magVarBox.Text = splitData[18];
                 timeStampBox.Text = splitData[19];
+
+                if (double.Parse(rpmBox.Text) < double.Parse(minRPM.Text) || double.Parse(rpmBox.Text) > double.Parse(maxRPM.Text)) rpmBox.Background = new SolidColorBrush(Colors.Red);
+                else rpmBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+
+                if (double.Parse(etempBox.Text) < double.Parse(minEtemp.Text) || double.Parse(etempBox.Text) > double.Parse(maxEtemp.Text)) etempBox.Background = new SolidColorBrush(Colors.Red);
+                else etempBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+
+                if (double.Parse(otempBox.Text) < double.Parse(minOtemp.Text) || double.Parse(otempBox.Text) > double.Parse(maxOtemp.Text)) otempBox.Background = new SolidColorBrush(Colors.Red);
+                else otempBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+
+                if (double.Parse(opresBox.Text) < double.Parse(minOpres.Text) || double.Parse(opresBox.Text) > double.Parse(maxOpres.Text)) opresBox.Background = new SolidColorBrush(Colors.Red);
+                else opresBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+
+                if (double.Parse(fpresBox.Text) < double.Parse(minFpres.Text) || double.Parse(fpresBox.Text) > double.Parse(maxFpres.Text)) fpresBox.Background = new SolidColorBrush(Colors.Red);
+                else fpresBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+
+                if (double.Parse(battVBox.Text) < double.Parse(minBattV.Text) || double.Parse(battVBox.Text) > double.Parse(maxBattV.Text)) battVBox.Background = new SolidColorBrush(Colors.Red);
+                else battVBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+
+                if (double.Parse(flevelBox.Text) < double.Parse(minFlevel.Text) || double.Parse(flevelBox.Text) > double.Parse(maxFlevel.Text)) flevelBox.Background = new SolidColorBrush(Colors.Red);
+                else flevelBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+
+                if (double.Parse(depthBox.Text) < double.Parse(minDepth.Text) || double.Parse(depthBox.Text) > double.Parse(maxDepth.Text)) depthBox.Background = new SolidColorBrush(Colors.Red);
+                else depthBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
             }
         }
 
@@ -137,6 +178,10 @@ namespace NMEATrax_Replay_app
                     outputBox.Text = e.ToString();
                     throw;
                 }
+                if (lineScroll.Value >= lineScroll.Maximum)
+                {
+                    playbackEn = false;
+                }
             }
         }
 
@@ -160,6 +205,7 @@ namespace NMEATrax_Replay_app
 
         bool getFilePath()
         {
+
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.InitialDirectory = "c:\\";
             dlg.Filter = "csv files (*.csv)|*.csv";
@@ -167,8 +213,8 @@ namespace NMEATrax_Replay_app
             
             if (dlg.ShowDialog() == true)
             {
-                filePath = dlg.FileName;
-                if (filePath != string.Empty)
+                dataFilePath = dlg.FileName;
+                if (dataFilePath != string.Empty)
                 {
                     return (true);
                 } else
@@ -182,13 +228,13 @@ namespace NMEATrax_Replay_app
         void analyzeData(int item, double min, double max)
         {
             analyzeBox.Text = string.Empty;
-            if (filePath == string.Empty)
+            if (dataFilePath == string.Empty)
             {
                 outputBox.Text = "Please select a file.";
             }
             else
             {
-                var lines = File.ReadLines(filePath);
+                var lines = File.ReadLines(dataFilePath);
                 double count = 0;
                 foreach (var line in lines)
                 {
@@ -234,6 +280,63 @@ namespace NMEATrax_Replay_app
                     lineScroll.Value = double.Parse(curLnNum.Text) - 1;
                     updateData();
                 }
+            }
+        }
+
+        private void saveLimitsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "csv files (*.csv)|*.csv";         // file type / extension
+
+            if (dlg.ShowDialog() == true)
+            {
+                string limits = minRPM.Text.ToString() + ",";
+                limits += maxRPM.Text.ToString() + ",";
+                limits += minEtemp.Text.ToString() + ",";
+                limits += maxEtemp.Text.ToString() + ",";
+                limits += minOtemp.Text.ToString() + ",";
+                limits += maxOtemp.Text.ToString() + ",";
+                limits += minOpres.Text.ToString() + ",";
+                limits += maxOpres.Text.ToString() + ",";
+                limits += minFpres.Text.ToString() + ",";
+                limits += maxFpres.Text.ToString() + ",";
+                limits += minFlevel.Text.ToString() + ",";
+                limits += maxFlevel.Text.ToString() + ",";
+                limits += minBattV.Text.ToString() + ",";
+                limits += maxBattV.Text.ToString() + ",";
+                limits += minDepth.Text.ToString() + ",";
+                limits += maxDepth.Text.ToString();
+                File.WriteAllText(dlg.FileName, limits);
+            }
+        }
+
+        private void loadLimitsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            //dlg.InitialDirectory = "c:\\";
+            dlg.Filter = "csv files (*.csv)|*.csv";
+            dlg.FilterIndex = 1;
+
+            if (dlg.ShowDialog() == true)
+            {
+                var limits = File.ReadAllText(dlg.FileName);
+                string[] spiltLimits = limits.Split(",");
+                minRPM.Text= spiltLimits[0];
+                maxRPM.Text = spiltLimits[1];
+                minEtemp.Text= spiltLimits[2];
+                maxEtemp.Text= spiltLimits[3];
+                minOtemp.Text= spiltLimits[4];
+                maxOtemp.Text= spiltLimits[5];
+                minOpres.Text= spiltLimits[6];
+                maxOpres.Text= spiltLimits[7];
+                minFpres.Text= spiltLimits[8];
+                maxFpres.Text= spiltLimits[9];
+                minFlevel.Text= spiltLimits[10];
+                maxFlevel.Text= spiltLimits[11];
+                minBattV.Text= spiltLimits[12];
+                maxBattV.Text= spiltLimits[13];
+                minDepth.Text= spiltLimits[14];
+                maxDepth.Text= spiltLimits[15];
             }
         }
     }
