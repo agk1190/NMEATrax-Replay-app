@@ -33,11 +33,15 @@ namespace NMEATrax_Replay_app
         private int multiCount = 0;
         private readonly int []multiplier = { 1, 2, 4, 8, 16, 32, 64 };
         private string dataFilePath = string.Empty;
+        //private string celcius = "°C";
+        //private string fahrenheit = "°F";
+        //private bool isDegC = true;
+        //private bool isMeter = false;
 
         public MainWindow()
         {
             InitializeComponent();
-            string[] variables = { "RPM", "Engine Temp", "Oil Temp", "Oil Pressure", "Exhaust Temp", 
+            string[] variables = { "RPM", "Engine Temp", "Oil Temp", "Oil Pressure", 
                 "Fuel Rate", "Fuel Pressure", "Fuel Level", "Leg Tilt", "Speed", "Heading", "Cross Track Error", 
                 "Depth", "Water Temp", "Battery Voltage" };
             analyzeOptBox.ItemsSource = variables;
@@ -113,6 +117,27 @@ namespace NMEATrax_Replay_app
                 lonBox.Text = splitData[17];
                 magVarBox.Text = splitData[18];
                 timeStampBox.Text = splitData[19];
+                if (splitData[20] == "1")
+                {
+                    etempLabel.Content = "Engine Temp (°F)";
+                    otempLabel.Content = "Oil Temp (°F)";
+                    wtempLabel.Content = "Water Temp (°F)";
+                } else
+                {
+                    etempLabel.Content = "Engine Temp (°C)";
+                    otempLabel.Content = "Oil Temp (°C)";
+                    wtempLabel.Content = "Water Temp (°C)";
+                }
+                if (splitData[21] == "1")
+                {
+                    xteLabel.Content = "Cross Track Error (m)";
+                    depthLabel.Content = "Water Depth (m)";
+                }
+                else
+                {
+                    xteLabel.Content = "Cross Track Error (ft)";
+                    depthLabel.Content = "Water Depth (ft)";
+                }
 
                 if (double.Parse(rpmBox.Text) < double.Parse(minRPM.Text) || double.Parse(rpmBox.Text) > double.Parse(maxRPM.Text)) rpmBox.Background = new SolidColorBrush(Colors.Red);
                 else rpmBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));

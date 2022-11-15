@@ -22,8 +22,8 @@
         <TextBox x:Name="fpresBox" HorizontalAlignment="Left" Height="20" Margin="111,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
         <TextBox x:Name="timeStampBox" HorizontalAlignment="Left" Height="20" Margin="111,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Background="#FFC8C8C8"/>
         <Label x:Name="rpmLabel" Content="RPM" HorizontalAlignment="Left" Margin="111,64,0,0" VerticalAlignment="Top" Height="15" Padding="0,0,0,0"/>
-        <Label x:Name="etempLabel" Content="Engine Temp (*C)" HorizontalAlignment="Left" Margin="111,102,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
-        <Label x:Name="otempLabel" Content="Oil Temp (*C)" HorizontalAlignment="Left" Margin="111,142,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
+        <Label x:Name="etempLabel" Content="Engine Temp (°C)" HorizontalAlignment="Left" Margin="111,102,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
+        <Label x:Name="otempLabel" Content="Oil Temp (°C)" HorizontalAlignment="Left" Margin="111,142,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="opresLabel" Content="Oil Pressure (kPa)" HorizontalAlignment="Left" Margin="111,182,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="fuelRateLabel" Content="Fuel Rate (L/h)" HorizontalAlignment="Left" Margin="111,222,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="fpresLabel" Content="Fuel Pressure (kPa)" HorizontalAlignment="Left" Margin="111,262,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
@@ -49,13 +49,13 @@
         <Label x:Name="latLabel" Content="Latitude" HorizontalAlignment="Left" Margin="411,62,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="lonLabel" Content="Longitude" HorizontalAlignment="Left" Margin="411,102,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="speedLabel" Content="Speed (kn)" HorizontalAlignment="Left" Margin="411,142,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
-        <Label x:Name="headingLabel" Content="Heading (deg)" HorizontalAlignment="Left" Margin="411,182,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
+        <Label x:Name="headingLabel" Content="Heading (°)" HorizontalAlignment="Left" Margin="411,182,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="xteLabel" Content="Cross Track Error (m)" HorizontalAlignment="Left" Margin="411,222,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
 
         <TextBox x:Name="depthBox" HorizontalAlignment="Left" Height="20" Margin="561,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8" Focusable="True"/>
         <TextBox x:Name="wtempBox" HorizontalAlignment="Left" Height="20" Margin="561,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
-        <Label x:Name="depthLabel" Content="Depth (m)" HorizontalAlignment="Left" Margin="561,62,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
-        <Label x:Name="wtempLabel" Content="Water Temp (*C)" HorizontalAlignment="Left" Margin="561,102,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
+        <Label x:Name="depthLabel" Content="Water Depth (m)" HorizontalAlignment="Left" Margin="561,62,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
+        <Label x:Name="wtempLabel" Content="Water Temp (°C)" HorizontalAlignment="Left" Margin="561,102,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <TextBlock x:Name="playbackSpeedBox" HorizontalAlignment="Left" Height="20" Margin="81,512,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="25" Text="1"/>
         <Button x:Name="spdIncBtn" Content="u" HorizontalAlignment="Left" Height="10" Margin="112,512,0,0" VerticalAlignment="Top" Width="20" Click="spdInc_Click"/>
         <Button x:Name="spdDecBtn" Content="d" HorizontalAlignment="Left" Height="10" Margin="112,522,0,0" VerticalAlignment="Top" Width="20" Click="spdDec_Click"/>
