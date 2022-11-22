@@ -45,12 +45,11 @@
         <TextBox x:Name="speedBox" HorizontalAlignment="Left" Height="20" Margin="411,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
         <TextBox x:Name="headingBox" HorizontalAlignment="Left" Height="20" Margin="411,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
         <TextBox x:Name="magVarBox" HorizontalAlignment="Left" Height="20" Margin="411,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
-        <TextBox x:Name="xteBox" HorizontalAlignment="Left" Height="20" Margin="411,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
         <Label x:Name="latLabel" Content="Latitude" HorizontalAlignment="Left" Margin="411,62,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="lonLabel" Content="Longitude" HorizontalAlignment="Left" Margin="411,102,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="speedLabel" Content="Speed (kn)" HorizontalAlignment="Left" Margin="411,142,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="headingLabel" Content="Heading (°)" HorizontalAlignment="Left" Margin="411,182,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
-        <Label x:Name="xteLabel" Content="Cross Track Error (m)" HorizontalAlignment="Left" Margin="411,222,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
+        <Label x:Name="magVarLabel" Content="Degrees (°)" HorizontalAlignment="Left" Margin="411,222,0,0" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
 
         <TextBox x:Name="depthBox" HorizontalAlignment="Left" Height="20" Margin="561,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8" Focusable="True"/>
         <TextBox x:Name="wtempBox" HorizontalAlignment="Left" Height="20" Margin="561,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>

@@ -42,7 +42,7 @@ namespace NMEATrax_Replay_app
         {
             InitializeComponent();
             string[] variables = { "RPM", "Engine Temp", "Oil Temp", "Oil Pressure", 
-                "Fuel Rate", "Fuel Pressure", "Fuel Level", "Leg Tilt", "Speed", "Heading", "Cross Track Error", 
+                "Fuel Rate", "Fuel Pressure", "Fuel Level", "Leg Tilt", "Speed", "Heading", 
                 "Depth", "Water Temp", "Battery Voltage" };
             analyzeOptBox.ItemsSource = variables;
             analyzeOptBox.SelectedIndex = 0;
@@ -107,17 +107,16 @@ namespace NMEATrax_Replay_app
                 legTiltBox.Text = splitData[7];
                 speedBox.Text = splitData[8];
                 headingBox.Text = splitData[9];
-                xteBox.Text = splitData[10];
-                depthBox.Text = splitData[11];
-                wtempBox.Text = splitData[12];
-                battVBox.Text = splitData[13];
-                ehoursBox.Text = splitData[14];
-                gearBox.Text = splitData[15];
-                latBox.Text = splitData[16];
-                lonBox.Text = splitData[17];
-                magVarBox.Text = splitData[18];
-                timeStampBox.Text = splitData[19];
-                if (splitData[20] == "1")
+                depthBox.Text = splitData[10];
+                wtempBox.Text = splitData[11];
+                battVBox.Text = splitData[12];
+                ehoursBox.Text = splitData[13];
+                gearBox.Text = splitData[14];
+                latBox.Text = splitData[15];
+                lonBox.Text = splitData[16];
+                magVarBox.Text = splitData[17];
+                timeStampBox.Text = splitData[20];
+                if (splitData[18] == "1")
                 {
                     etempLabel.Content = "Engine Temp (°F)";
                     otempLabel.Content = "Oil Temp (°F)";
@@ -128,14 +127,12 @@ namespace NMEATrax_Replay_app
                     otempLabel.Content = "Oil Temp (°C)";
                     wtempLabel.Content = "Water Temp (°C)";
                 }
-                if (splitData[21] == "1")
+                if (splitData[19] == "1")
                 {
-                    xteLabel.Content = "Cross Track Error (m)";
                     depthLabel.Content = "Water Depth (m)";
                 }
                 else
                 {
-                    xteLabel.Content = "Cross Track Error (ft)";
                     depthLabel.Content = "Water Depth (ft)";
                 }
 
