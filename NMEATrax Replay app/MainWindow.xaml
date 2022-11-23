@@ -5,18 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NMEATrax_Replay_app"
         mc:Ignorable="d"
-        Title="NMEATrax Replay" Height="930" Width="1400">
+        WindowState="Maximized"
+        Title="NMEATrax Replay" Height="912" Width="1368">
     <Grid>
-
-
-        <TextBox x:Name="outputBox"     Margin="50,480,150,0" VerticalAlignment="Top" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
-        <Slider x:Name="lineScroll"     Margin="400,570,150,0" VerticalAlignment="Top" Height="21" MinHeight="3" IsSnapToTickEnabled="True" ValueChanged="lineScroll_ValueChanged" MouseWheel="lineScroll_MouseWheel"/>
-        <TextBox x:Name="curLnNum"      Margin="328,569,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Height="21" TextWrapping="Wrap" Text="1" KeyDown="curLnNum_KeyDown" AutoWordSelection="True"/>
+        <TextBox x:Name="outputBox"     Margin="50,480,78,0" VerticalAlignment="Top" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+        <Slider x:Name="lineScroll"     Margin="400,570,78,0" VerticalAlignment="Top" Height="21" MinHeight="3" IsSnapToTickEnabled="True" ValueChanged="lineScroll_ValueChanged" MouseWheel="lineScroll_MouseWheel"/>
+        <TextBox x:Name="curLnNum"      Margin="330,565,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Height="30" TextWrapping="Wrap" Text="1" KeyDown="curLnNum_KeyDown" AutoWordSelection="True" FontSize="18"/>
         <Button x:Name="incrementBtn"   Content="&gt;" Margin="260,560,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="30" Click="incrementBtn_Click"/>
         <Button x:Name="decrementBtn"   Content="&lt;" Margin="230,560,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="30" Click="decrementBtn_Click"/>
         <Button x:Name="playStopBtn"    Content="Play/Stop" Margin="170,560,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="60" Click="playStopBtn_Click"/>
         <Label x:Name="outputBoxLabel"  Content="Raw CSV Data" Margin="50,450,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="21" Width="127" Padding="0,0,0,0" FontWeight="Bold" FontSize="18"/>
-        <Label x:Name="AnalyzeLabel"  Content="Analyze" Margin="1000,75,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100" Padding="0,0,0,0" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="AnalyzeLabel"  Content="Analyze" Margin="980,75,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100" Padding="0,0,0,0" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
 
         <TextBox x:Name="rpmBox"        Margin="50,127,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="104" TextWrapping="Wrap" Background="#FFC8C8C8"/>
@@ -69,22 +68,22 @@
         <Label x:Name="wtempLabel"      Content="Water Temp (°C)"   Margin="500,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
 
 
-        <TextBlock x:Name="playbackSpeedBox"    Margin="57,560,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="40" Text="1" FontSize="24" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <TextBlock x:Name="playbackSpeedBox"    Margin="60,560,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="40" Text="1" FontSize="24" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
 
-        <Button x:Name="spdIncBtn"              Content="Increase" Margin="97,560,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="60" Click="spdInc_Click"/>
-        <Button x:Name="spdDecBtn"              Content="Decrease" Margin="97,580,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="60" Click="spdDec_Click"/>
-
-
-        <TextBox x:Name="analyzeBox"        Margin="1060,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="273" Width="252" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
-        <ComboBox x:Name="analyzeOptBox"    Margin="900,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="143" SelectedIndex="0"/>
-
-        <Button x:Name="analyzeBtn"         Content="Analyze" Margin="1006,241,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="analyzeBtn_Click"/>
-        <Label x:Name="analyzeBoxLabel"     Content="Analyze Output" Margin="1060,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Width="86" Padding="0,0,0,-9"/>
-        <Label x:Name="analyzeTypeLabel"    Content="Variable" Margin="900,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="15" Width="47" Padding="0,0,0,0"/>
+        <Button x:Name="spdIncBtn"              Content="Increase" Margin="100,560,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="60" Click="spdInc_Click"/>
+        <Button x:Name="spdDecBtn"              Content="Decrease" Margin="100,580,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="60" Click="spdDec_Click"/>
 
 
-        <TextBox x:Name="minBox"    Margin="1010,190,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
-        <TextBox x:Name="maxBox"    Margin="1010,212,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
+        <TextBox x:Name="analyzeBox"        Margin="1040,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="270" Width="250" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+        <ComboBox x:Name="analyzeOptBox"    Margin="900,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="130" SelectedIndex="0"/>
+
+        <Button x:Name="analyzeBtn"         Content="Analyze" Margin="986,241,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="analyzeBtn_Click"/>
+        <Label x:Name="analyzeBoxLabel"     Content="Analyze Output" Margin="1040,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Width="90" Padding="0,0,0,0"/>
+        <Label x:Name="analyzeTypeLabel"    Content="Variable to Analyze" Margin="900,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Width="110" Padding="0,0,0,0"/>
+
+
+        <TextBox x:Name="minBox"    Margin="990,190,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
+        <TextBox x:Name="maxBox"    Margin="990,212,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
         <TextBox x:Name="minRPM"    Margin="743,132,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
         <TextBox x:Name="maxRPM"    Margin="783,132,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
         <TextBox x:Name="minEtemp"  Margin="743,153,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
@@ -103,9 +102,9 @@
         <TextBox x:Name="maxDepth"  Margin="783,279,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
 
 
-        <Label x:Name="minLabel"            Content="Min"               Margin="980,190,0,0"   HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="30" Padding="0,0,5,4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-        <Label x:Name="maxLabel"            Content="Max"               Margin="980,212,0,0"   HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="30" Padding="0,0,5,4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-        <Label x:Name="limitsLabel"         Content="Limits"            Margin="1010,170,0,0"   HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="40" Padding="0,0,0,-12"/>
+        <Label x:Name="minLabel"            Content="Min"               Margin="960,190,0,0"   HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="30" Padding="0,0,5,4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <Label x:Name="maxLabel"            Content="Max"               Margin="960,212,0,0"   HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="30" Padding="0,0,5,4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <Label x:Name="limitsLabel"         Content="Limits"            Margin="990,170,0,0"   HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="40" Padding="0,0,0,-12"/>
         <Label x:Name="minLiveLabel"        Content="Min"               Margin="748,110,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="30" Padding="0,0,5,4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
         <Label x:Name="maxLiveLabel"        Content="Max"               Margin="788,110,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="30" Padding="0,0,5,4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
         <Label x:Name="liveRpmLabel"        Content="RPM"               Margin="670,133,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,5,-12" HorizontalContentAlignment="Right"/>
@@ -113,7 +112,7 @@
         <Label x:Name="liveOtempLabel"      Content="Oil Temp"          Margin="670,175,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,5,-12" HorizontalContentAlignment="Right"/>
         <Label x:Name="liveOpresLabel"      Content="Oil Pressure"      Margin="670,196,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,0,-12" HorizontalContentAlignment="Right"/>
         <Label x:Name="liveFpresLabel"      Content="Fuel Pressure"     Margin="670,217,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,5,-12" HorizontalContentAlignment="Right"/>
-        <Label x:Name="liveBattVLabel"      Content="Battery Voltage"   Margin="0,259,0,0"    HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="82" Padding="0,0,0,-12" HorizontalContentAlignment="Right"/>
+        <Label x:Name="liveBattVLabel"      Content="Battery Voltage"   Margin="658,259,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="82" Padding="0,0,0,-12" HorizontalContentAlignment="Right"/>
         <Label x:Name="liveFlevelLabel"     Content="Fuel Level"        Margin="670,238,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,5,-12" HorizontalContentAlignment="Right"/>
         <Label x:Name="liveDepthLabel"      Content="Depth"             Margin="670,280,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,0,-12" HorizontalContentAlignment="Right"/>
         <Label x:Name="liveDataLimits"      Content="Live Data Limits"  Margin="685,75,0,0"     HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="156" Padding="0,0,5,-12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="18"/>
@@ -128,5 +127,10 @@
         <Border VerticalAlignment="Top" Height="50" Background="#FF0A1128" Margin="120,0,0,0">
             <TextBlock x:Name="fileNameBox" Margin="50,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="20" Width="700" Foreground="White"/>
         </Border>
+        <Label Content="Playback Speed" Margin="65,605,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="17" Padding="0,0,0,0"/>
+        <Label Content="Playback Controls" Margin="180,605,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="17" Padding="0,0,0,0"/>
+        <Label Content="NMEA" Margin="0,10,207,0" VerticalAlignment="Top" Height="30" Padding="0,0,0,0" FontSize="24" FontWeight="Bold" Foreground="Blue" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="80"/>
+        <Label Content="Trax" Margin="0,10,156,0" Padding="0,0,0,0" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="73"/>
+        <Label Content="Replay App" Margin="0,12,62,0" Padding="0,0,0,0" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100"/>
     </Grid>
 </Window>
