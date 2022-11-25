@@ -1,26 +1,12 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using Microsoft.Win32;
-using Newtonsoft.Json.Linq;
+﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Formats.Asn1;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Linq;
 
 namespace NMEATrax_Replay_app
 {
@@ -33,10 +19,6 @@ namespace NMEATrax_Replay_app
         private int multiCount = 0;
         private readonly int []multiplier = { 1, 2, 4, 8, 16, 32, 64 };
         private string dataFilePath = string.Empty;
-        //private string celcius = "°C";
-        //private string fahrenheit = "°F";
-        //private bool isDegC = true;
-        //private bool isMeter = false;
 
         public MainWindow()
         {
@@ -44,9 +26,9 @@ namespace NMEATrax_Replay_app
             string[] variables = { "RPM", "Engine Temp", "Oil Temp", "Oil Pressure", 
                 "Fuel Rate", "Fuel Pressure", "Fuel Level", "Leg Tilt", "Speed", "Heading", 
                 "Depth", "Water Temp", "Battery Voltage" };
-            analyzeOptBox.ItemsSource = variables;
+            analyzeOptBox.ItemsSource = variables;      // set the variables available for analyzing
             analyzeOptBox.SelectedIndex = 0;
-            minBox.Text = "0";
+            minBox.Text = "0";      // set the default live limits
             maxBox.Text = "100";
             minRPM.Text= "0";
             maxRPM.Text= "5000";
@@ -70,10 +52,17 @@ namespace NMEATrax_Replay_app
         {
             if (getFilePath())
             {
-                lineScroll.Maximum = File.ReadAllLines(dataFilePath).Length - 1;
-                updateData();
+                try
+                {
+                    lineScroll.Maximum = File.ReadAllLines(dataFilePath).Length - 1;        // detect and set the maximum lines avalible to scroll
+                    updateData();
 
-                fileNameBox.Text = dataFilePath;
+                    fileNameBox.Text = dataFilePath;        // display the file opened
+                }
+                catch (System.IO.IOException)
+                {
+                    outputBox.Text = "Please close the file you are trying to open.";
+                }
             }
         }
 
@@ -90,14 +79,14 @@ namespace NMEATrax_Replay_app
             } 
             else
             {
-                //https://stackoverflow.com/a/30329207
+                // reference https://stackoverflow.com/a/30329207
                 var lines = File.ReadLines(dataFilePath);
-                string line = lines.ElementAtOrDefault((Index)(lineScroll.Value)); // null if there are less lines
+                string line = lines.ElementAtOrDefault((Index)(lineScroll.Value)); // retrieve data from the csv file at the line requested by the scroll bar
                 string[] splitData = line.Split(",");
                 outputBox.Text = line;
                 curLnNum.Text = (lineScroll.Value + 1).ToString();
 
-                rpmBox.Text = splitData[0];
+                rpmBox.Text = splitData[0];     // populate the live data boxes with the data
                 etempBox.Text = splitData[1];
                 otempBox.Text = splitData[2];
                 opresBox.Text = splitData[3];
@@ -136,6 +125,7 @@ namespace NMEATrax_Replay_app
                     depthLabel.Content = "Water Depth (ft)";
                 }
 
+                // highlight the corresponding live data box when the data exceeds the limit specified
                 if (double.Parse(rpmBox.Text) < double.Parse(minRPM.Text) || double.Parse(rpmBox.Text) > double.Parse(maxRPM.Text)) rpmBox.Background = new SolidColorBrush(Colors.Red);
                 else rpmBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
 
@@ -176,7 +166,7 @@ namespace NMEATrax_Replay_app
 
         private void lineScroll_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (e.Delta > 0)
+            if (e.Delta > 0)        // move the scroll bar when using scroll wheel
             {
                 lineScroll.Value++;
             } else if (e.Delta < 0)
@@ -198,7 +188,7 @@ namespace NMEATrax_Replay_app
                 catch (Exception)
                 {
                     outputBox.Text = e.ToString();
-                    throw;
+                    //throw;
                 }
                 if (lineScroll.Value >= lineScroll.Maximum)
                 {
@@ -212,7 +202,7 @@ namespace NMEATrax_Replay_app
             if (multiCount > 0)
             {
                 multiCount--;
-                playbackSpeedBox.Text = multiplier[multiCount].ToString();
+                playbackSpeedBox.Text = multiplier[multiCount].ToString();      // display current speed number
             } else{}
         }
 
