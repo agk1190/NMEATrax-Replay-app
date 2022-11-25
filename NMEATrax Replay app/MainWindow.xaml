@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:NMEATrax_Replay_app"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="NMEATrax Replay" Height="912" Width="1368">
+        Icon="C:\Users\alex.LAN\Documents\NMEATrax Replay\NMEATrax Replay app\NMEATrax Replay app\favicon.ico"
+        Title="NMEATrax Replay App" 
+        Height="912" Width="1368">
     <Grid>
         <TextBox x:Name="outputBox"     Margin="50,480,78,0" VerticalAlignment="Top" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
         <Slider x:Name="lineScroll"     Margin="400,570,78,0" VerticalAlignment="Top" Height="21" MinHeight="3" IsSnapToTickEnabled="True" ValueChanged="lineScroll_ValueChanged" MouseWheel="lineScroll_MouseWheel"/>
