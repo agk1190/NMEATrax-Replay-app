@@ -54,6 +54,7 @@ namespace NMEATrax_Replay_app
             {
                 try
                 {
+                    lineScroll.Value = 0;
                     lineScroll.Maximum = File.ReadAllLines(dataFilePath).Length - 1;        // detect and set the maximum lines avalible to scroll
                     updateData();
 
@@ -86,70 +87,95 @@ namespace NMEATrax_Replay_app
                 outputBox.Text = line;
                 curLnNum.Text = (lineScroll.Value + 1).ToString();
 
-                rpmBox.Text = splitData[0];     // populate the live data boxes with the data
-                etempBox.Text = splitData[1];
-                otempBox.Text = splitData[2];
-                opresBox.Text = splitData[3];
-                fuelRateBox.Text = splitData[4];
-                fpresBox.Text = splitData[5];
-                flevelBox.Text = splitData[6];
-                legTiltBox.Text = splitData[7];
-                speedBox.Text = splitData[8];
-                headingBox.Text = splitData[9];
-                depthBox.Text = splitData[10];
-                wtempBox.Text = splitData[11];
-                battVBox.Text = splitData[12];
-                ehoursBox.Text = splitData[13];
-                gearBox.Text = splitData[14];
-                latBox.Text = splitData[15];
-                lonBox.Text = splitData[16];
-                magVarBox.Text = splitData[17];
-                timeStampBox.Text = splitData[20];
-                if (splitData[18] == "1")
+                try
                 {
-                    etempLabel.Content = "Engine Temp (°F)";
-                    otempLabel.Content = "Oil Temp (°F)";
-                    wtempLabel.Content = "Water Temp (°F)";
-                } else
-                {
-                    etempLabel.Content = "Engine Temp (°C)";
-                    otempLabel.Content = "Oil Temp (°C)";
-                    wtempLabel.Content = "Water Temp (°C)";
+                    rpmBox.Text = splitData[0];     // populate the live data boxes with the data
+                    etempBox.Text = splitData[1];
+                    otempBox.Text = splitData[2];
+                    opresBox.Text = splitData[3];
+                    fuelRateBox.Text = splitData[4];
+                    fpresBox.Text = splitData[5];
+                    flevelBox.Text = splitData[6];
+                    legTiltBox.Text = splitData[7];
+                    speedBox.Text = splitData[8];
+                    headingBox.Text = splitData[9];
+                    depthBox.Text = splitData[10];
+                    wtempBox.Text = splitData[11];
+                    battVBox.Text = splitData[12];
+                    ehoursBox.Text = splitData[13];
+                    gearBox.Text = splitData[14];
+                    latBox.Text = splitData[15];
+                    lonBox.Text = splitData[16];
+                    magVarBox.Text = splitData[17];
+                    timeStampBox.Text = splitData[20];
+                
+                
+                    if (splitData[18] == "1")
+                    {
+                        etempLabel.Content = "Engine Temp (°F)";
+                        otempLabel.Content = "Oil Temp (°F)";
+                        wtempLabel.Content = "Water Temp (°F)";
+                    } else
+                    {
+                        etempLabel.Content = "Engine Temp (°C)";
+                        otempLabel.Content = "Oil Temp (°C)";
+                        wtempLabel.Content = "Water Temp (°C)";
+                    }
+                    if (splitData[19] == "1")
+                    {
+                        depthLabel.Content = "Water Depth (m)";
+                    }
+                    else
+                    {
+                        depthLabel.Content = "Water Depth (ft)";
+                    }
                 }
-                if (splitData[19] == "1")
+                catch (System.IndexOutOfRangeException)
                 {
-                    depthLabel.Content = "Water Depth (m)";
-                }
-                else
-                {
-                    depthLabel.Content = "Water Depth (ft)";
+                    fileErrorMessage();
                 }
 
-                // highlight the corresponding live data box when the data exceeds the limit specified
-                if (double.Parse(rpmBox.Text) < double.Parse(minRPM.Text) || double.Parse(rpmBox.Text) > double.Parse(maxRPM.Text)) rpmBox.Background = new SolidColorBrush(Colors.Red);
-                else rpmBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+                try 
+                { 
+                    // highlight the corresponding live data box when the data exceeds the limit specified
+                    if (double.Parse(rpmBox.Text) < double.Parse(minRPM.Text) || double.Parse(rpmBox.Text) > double.Parse(maxRPM.Text)) rpmBox.Background = new SolidColorBrush(Colors.Red);
+                    else rpmBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
 
-                if (double.Parse(etempBox.Text) < double.Parse(minEtemp.Text) || double.Parse(etempBox.Text) > double.Parse(maxEtemp.Text)) etempBox.Background = new SolidColorBrush(Colors.Red);
-                else etempBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+                    if (double.Parse(etempBox.Text) < double.Parse(minEtemp.Text) || double.Parse(etempBox.Text) > double.Parse(maxEtemp.Text)) etempBox.Background = new SolidColorBrush(Colors.Red);
+                    else etempBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
 
-                if (double.Parse(otempBox.Text) < double.Parse(minOtemp.Text) || double.Parse(otempBox.Text) > double.Parse(maxOtemp.Text)) otempBox.Background = new SolidColorBrush(Colors.Red);
-                else otempBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+                    if (double.Parse(otempBox.Text) < double.Parse(minOtemp.Text) || double.Parse(otempBox.Text) > double.Parse(maxOtemp.Text)) otempBox.Background = new SolidColorBrush(Colors.Red);
+                    else otempBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
 
-                if (double.Parse(opresBox.Text) < double.Parse(minOpres.Text) || double.Parse(opresBox.Text) > double.Parse(maxOpres.Text)) opresBox.Background = new SolidColorBrush(Colors.Red);
-                else opresBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+                    if (double.Parse(opresBox.Text) < double.Parse(minOpres.Text) || double.Parse(opresBox.Text) > double.Parse(maxOpres.Text)) opresBox.Background = new SolidColorBrush(Colors.Red);
+                    else opresBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
 
-                if (double.Parse(fpresBox.Text) < double.Parse(minFpres.Text) || double.Parse(fpresBox.Text) > double.Parse(maxFpres.Text)) fpresBox.Background = new SolidColorBrush(Colors.Red);
-                else fpresBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+                    if (double.Parse(fpresBox.Text) < double.Parse(minFpres.Text) || double.Parse(fpresBox.Text) > double.Parse(maxFpres.Text)) fpresBox.Background = new SolidColorBrush(Colors.Red);
+                    else fpresBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
 
-                if (double.Parse(battVBox.Text) < double.Parse(minBattV.Text) || double.Parse(battVBox.Text) > double.Parse(maxBattV.Text)) battVBox.Background = new SolidColorBrush(Colors.Red);
-                else battVBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+                    if (double.Parse(battVBox.Text) < double.Parse(minBattV.Text) || double.Parse(battVBox.Text) > double.Parse(maxBattV.Text)) battVBox.Background = new SolidColorBrush(Colors.Red);
+                    else battVBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
 
-                if (double.Parse(flevelBox.Text) < double.Parse(minFlevel.Text) || double.Parse(flevelBox.Text) > double.Parse(maxFlevel.Text)) flevelBox.Background = new SolidColorBrush(Colors.Red);
-                else flevelBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+                    if (double.Parse(flevelBox.Text) < double.Parse(minFlevel.Text) || double.Parse(flevelBox.Text) > double.Parse(maxFlevel.Text)) flevelBox.Background = new SolidColorBrush(Colors.Red);
+                    else flevelBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
 
-                if (double.Parse(depthBox.Text) < double.Parse(minDepth.Text) || double.Parse(depthBox.Text) > double.Parse(maxDepth.Text)) depthBox.Background = new SolidColorBrush(Colors.Red);
-                else depthBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
-            }
+                    if (double.Parse(depthBox.Text) < double.Parse(minDepth.Text) || double.Parse(depthBox.Text) > double.Parse(maxDepth.Text)) depthBox.Background = new SolidColorBrush(Colors.Red);
+                    else depthBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+                }
+                catch (System.FormatException)
+                {
+                    fileErrorMessage();
+                }
+            }   
+        }
+
+        private void fileErrorMessage()
+        {
+            string messageBoxText = "This file is incompatible!\r\nPlease choose a different file.";
+            MessageBoxButton button = MessageBoxButton.OK;
+            MessageBoxImage icon = MessageBoxImage.Exclamation;
+
+            MessageBox.Show(messageBoxText, "Warning", button, icon, MessageBoxResult.OK);
         }
 
         private void incrementBtn_Click(object sender, RoutedEventArgs e)
