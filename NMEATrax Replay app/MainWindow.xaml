@@ -25,16 +25,14 @@
         <TextBox x:Name="otempBox"      Margin="50,207,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="104" TextWrapping="Wrap" Background="#FFC8C8C8"/>
         <TextBox x:Name="opresBox"      Margin="50,247,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="104" TextWrapping="Wrap" Background="#FFC8C8C8"/>
         <TextBox x:Name="fuelRateBox"   Margin="50,287,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="104" TextWrapping="Wrap" Background="#FFC8C8C8"/>
-        <TextBox x:Name="fpresBox"      Margin="50,327,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="104" TextWrapping="Wrap" Background="#FFC8C8C8"/>
-        <TextBox x:Name="timeStampBox"  Margin="50,367,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="250" TextWrapping="Wrap" Background="#FFC8C8C8"/>
+        <TextBox x:Name="timeStampBox"  Margin="50,327,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="250" TextWrapping="Wrap" Background="#FFC8C8C8"/>
 
         <Label x:Name="rpmLabel"        Content="RPM"                   Margin="50,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="etempLabel"      Content="Engine Temp (°C)"      Margin="50,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="otempLabel"      Content="Oil Temp (°C)"         Margin="50,190,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="opresLabel"      Content="Oil Pressure (kPa)"    Margin="50,230,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
         <Label x:Name="fuelRateLabel"   Content="Fuel Rate (L/h)"       Margin="50,270,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
-        <Label x:Name="fpresLabel"      Content="Fuel Pressure (kPa)"   Margin="50,310,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
-        <Label x:Name="timeStampLabel"  Content="Time Stamp"            Margin="51,350,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
+        <Label x:Name="timeStampLabel"  Content="Time Stamp"            Margin="51,310,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Padding="0,0,0,0"/>
 
 
         <TextBox x:Name="legTiltBox"    HorizontalAlignment="Left" Height="20" Margin="200,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Background="#FFC8C8C8"/>
@@ -94,14 +92,12 @@
         <TextBox x:Name="maxOtemp"  Margin="783,174,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
         <TextBox x:Name="minOpres"  Margin="743,195,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
         <TextBox x:Name="maxOpres"  Margin="783,195,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
-        <TextBox x:Name="minFpres"  Margin="743,216,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
-        <TextBox x:Name="maxFpres"  Margin="783,216,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
-        <TextBox x:Name="minBattV"  Margin="743,258,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
-        <TextBox x:Name="maxBattV"  Margin="783,258,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
-        <TextBox x:Name="minFlevel" Margin="743,237,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
-        <TextBox x:Name="maxFlevel" Margin="783,237,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
-        <TextBox x:Name="minDepth"  Margin="743,279,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
-        <TextBox x:Name="maxDepth"  Margin="783,279,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
+        <TextBox x:Name="minBattV"  Margin="743,237,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
+        <TextBox x:Name="maxBattV"  Margin="783,237,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
+        <TextBox x:Name="minFlevel" Margin="743,216,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
+        <TextBox x:Name="maxFlevel" Margin="783,216,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
+        <TextBox x:Name="minDepth"  Margin="743,258,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
+        <TextBox x:Name="maxDepth"  Margin="783,258,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="40" TextWrapping="Wrap"/>
 
 
         <Label x:Name="minLabel"            Content="Min"               Margin="960,190,0,0"   HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="30" Padding="0,0,5,4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
@@ -113,14 +109,13 @@
         <Label x:Name="liveEtempLabel"      Content="Engine Temp"       Margin="670,154,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,0,-12" HorizontalContentAlignment="Right"/>
         <Label x:Name="liveOtempLabel"      Content="Oil Temp"          Margin="670,175,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,5,-12" HorizontalContentAlignment="Right"/>
         <Label x:Name="liveOpresLabel"      Content="Oil Pressure"      Margin="670,196,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,0,-12" HorizontalContentAlignment="Right"/>
-        <Label x:Name="liveFpresLabel"      Content="Fuel Pressure"     Margin="670,217,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,5,-12" HorizontalContentAlignment="Right"/>
-        <Label x:Name="liveBattVLabel"      Content="Battery Voltage"   Margin="658,259,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="82" Padding="0,0,0,-12" HorizontalContentAlignment="Right"/>
-        <Label x:Name="liveFlevelLabel"     Content="Fuel Level"        Margin="670,238,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,5,-12" HorizontalContentAlignment="Right"/>
-        <Label x:Name="liveDepthLabel"      Content="Depth"             Margin="670,280,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,0,-12" HorizontalContentAlignment="Right"/>
+        <Label x:Name="liveBattVLabel"      Content="Battery Voltage"   Margin="658,238,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="82" Padding="0,0,0,-12" HorizontalContentAlignment="Right"/>
+        <Label x:Name="liveFlevelLabel"     Content="Fuel Level"        Margin="670,217,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,5,-12" HorizontalContentAlignment="Right"/>
+        <Label x:Name="liveDepthLabel"      Content="Depth"             Margin="670,259,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Padding="0,0,0,-12" HorizontalContentAlignment="Right"/>
         <Label x:Name="liveDataLimits"      Content="Live Data Limits"  Margin="685,75,0,0"     HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="156" Padding="0,0,5,-12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="18"/>
         <Label x:Name="liveDataLabel"       Content="Live Data"         Margin="50,75,0,0"     HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="89" Padding="0,0,5,-12" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveLimitsBtn"      Content="Save"              Margin="745,307,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="36" Click="saveLimitsBtn_Click"/>
-        <Button x:Name="loadLimitsBtn"      Content="Load"              Margin="785,307,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="36" Click="loadLimitsBtn_Click"/>
+        <Button x:Name="saveLimitsBtn"      Content="Save"              Margin="745,286,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="36" Click="saveLimitsBtn_Click"/>
+        <Button x:Name="loadLimitsBtn"      Content="Load"              Margin="785,286,0,0"    HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="36" Click="loadLimitsBtn_Click"/>
 
 
         <Border VerticalAlignment="Top" Height="50" Background="#FF0A1128" HorizontalAlignment="Left" Width="120">

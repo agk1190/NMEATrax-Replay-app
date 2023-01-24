@@ -24,7 +24,7 @@ namespace NMEATrax_Replay_app
         {
             InitializeComponent();
             string[] variables = { "RPM", "Engine Temp", "Oil Temp", "Oil Pressure", 
-                "Fuel Rate", "Fuel Pressure", "Fuel Level", "Leg Tilt", "Speed", "Heading", 
+                "Fuel Rate", "Fuel Level", "Leg Tilt", "Speed", "Heading", 
                 "Depth", "Water Temp", "Battery Voltage" };
             analyzeOptBox.ItemsSource = variables;      // set the variables available for analyzing
             analyzeOptBox.SelectedIndex = 0;
@@ -38,8 +38,6 @@ namespace NMEATrax_Replay_app
             maxOpres.Text = "700";
             minEtemp.Text = "0";
             maxEtemp.Text= "80";
-            minFpres.Text = "600";
-            maxFpres.Text= "700";
             minBattV.Text = "11";
             maxBattV.Text= "15";
             minFlevel.Text = "10";
@@ -94,23 +92,22 @@ namespace NMEATrax_Replay_app
                     otempBox.Text = splitData[2];
                     opresBox.Text = splitData[3];
                     fuelRateBox.Text = splitData[4];
-                    fpresBox.Text = splitData[5];
-                    flevelBox.Text = splitData[6];
-                    legTiltBox.Text = splitData[7];
-                    speedBox.Text = splitData[8];
-                    headingBox.Text = splitData[9];
-                    depthBox.Text = splitData[10];
-                    wtempBox.Text = splitData[11];
-                    battVBox.Text = splitData[12];
-                    ehoursBox.Text = splitData[13];
-                    gearBox.Text = splitData[14];
-                    latBox.Text = splitData[15];
-                    lonBox.Text = splitData[16];
-                    magVarBox.Text = splitData[17];
-                    timeStampBox.Text = splitData[20];
+                    flevelBox.Text = splitData[5];
+                    legTiltBox.Text = splitData[6];
+                    speedBox.Text = splitData[7];
+                    headingBox.Text = splitData[8];
+                    depthBox.Text = splitData[9];
+                    wtempBox.Text = splitData[10];
+                    battVBox.Text = splitData[11];
+                    ehoursBox.Text = splitData[12];
+                    gearBox.Text = splitData[13];
+                    latBox.Text = splitData[14];
+                    lonBox.Text = splitData[15];
+                    magVarBox.Text = splitData[16];
+                    timeStampBox.Text = splitData[19];
                 
                 
-                    if (splitData[18] == "1")
+                    if (splitData[17] == "1")
                     {
                         etempLabel.Content = "Engine Temp (°F)";
                         otempLabel.Content = "Oil Temp (°F)";
@@ -121,7 +118,7 @@ namespace NMEATrax_Replay_app
                         otempLabel.Content = "Oil Temp (°C)";
                         wtempLabel.Content = "Water Temp (°C)";
                     }
-                    if (splitData[19] == "1")
+                    if (splitData[18] == "1")
                     {
                         depthLabel.Content = "Water Depth (m)";
                     }
@@ -149,9 +146,6 @@ namespace NMEATrax_Replay_app
 
                     if (double.Parse(opresBox.Text) < double.Parse(minOpres.Text) || double.Parse(opresBox.Text) > double.Parse(maxOpres.Text)) opresBox.Background = new SolidColorBrush(Colors.Red);
                     else opresBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
-
-                    if (double.Parse(fpresBox.Text) < double.Parse(minFpres.Text) || double.Parse(fpresBox.Text) > double.Parse(maxFpres.Text)) fpresBox.Background = new SolidColorBrush(Colors.Red);
-                    else fpresBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
 
                     if (double.Parse(battVBox.Text) < double.Parse(minBattV.Text) || double.Parse(battVBox.Text) > double.Parse(maxBattV.Text)) battVBox.Background = new SolidColorBrush(Colors.Red);
                     else battVBox.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
@@ -336,8 +330,6 @@ namespace NMEATrax_Replay_app
                 limits += maxOtemp.Text.ToString() + ",";
                 limits += minOpres.Text.ToString() + ",";
                 limits += maxOpres.Text.ToString() + ",";
-                limits += minFpres.Text.ToString() + ",";
-                limits += maxFpres.Text.ToString() + ",";
                 limits += minFlevel.Text.ToString() + ",";
                 limits += maxFlevel.Text.ToString() + ",";
                 limits += minBattV.Text.ToString() + ",";
@@ -367,8 +359,6 @@ namespace NMEATrax_Replay_app
                 maxOtemp.Text= spiltLimits[5];
                 minOpres.Text= spiltLimits[6];
                 maxOpres.Text= spiltLimits[7];
-                minFpres.Text= spiltLimits[8];
-                maxFpres.Text= spiltLimits[9];
                 minFlevel.Text= spiltLimits[10];
                 maxFlevel.Text= spiltLimits[11];
                 minBattV.Text= spiltLimits[12];
